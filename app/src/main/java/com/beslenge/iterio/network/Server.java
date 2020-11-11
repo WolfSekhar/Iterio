@@ -82,26 +82,27 @@ public class Server {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 message.postValue("ITER SERVER Down");
-                Log.d(TAG, "onFailure: " + e.getMessage());
+                Log.d(TAG, "Login connection failed");
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-
+                Log.d(TAG, "Login connection Success");
                 try {
                     Response lResponse = response;
-                    Log.d(TAG, "onResponse: code " + lResponse.code());
+
                     JSONObject lJsonResponse = new JSONObject(Objects.requireNonNull(lResponse.body()).source().readUtf8());
 
                     if (lJsonResponse.getString("status").equals("success")) {
+                        Log.d(TAG, "Login Successful");
                         cookie.save(Objects.requireNonNull(lResponse.header("Set-Cookie")).substring(11, 39)); // Saves Cookie
-                        Log.d(TAG, "onResponse: " + Objects.requireNonNull(lResponse.header("Set-Cookie")).substring(11, 39));
                         student.saveName(lJsonResponse.getString("name"));
                         student.saveUserIDAndPassword(username, password);
                         student.saveLoginStatus(lJsonResponse.getString("status"));
                         message.postValue(lJsonResponse.getString("message"));
                         fetchRegistrationID();
                     } else {
+                        Log.d(TAG, "Login Unsuccessful");
                         student.saveLoginStatus(lJsonResponse.getString("status"));
                         message.postValue(lJsonResponse.getString("message"));
                     }
@@ -124,23 +125,33 @@ public class Server {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.d(TAG, "onFailure:fetch reg id   " + e.toString());
+                Log.d(TAG, "Registration Id connection Unsuccessful");
+                data.postValue("NODATA");
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-
+                Log.d(TAG, "Registration Id connection SUccessful");
                 try {
-                    Log.d(TAG, "fetch regid ok");
+
                     Response lResponce = response;
                     JSONObject lJsoneResponse = new JSONObject(Objects.requireNonNull(lResponce.body()).source().readUtf8());
-                    student.saveRegistrationID(lJsoneResponse
+                    String ID = lJsoneResponse
                             .getJSONArray("studentdata")
                             .getJSONObject(0)
-                            .getString("REGISTRATIONID"));
-                    fetchAttendance(student.getRegistrationID());
+                            .getString("REGISTRATIONID");
+                    if (!ID.isEmpty()) {
+                        Log.d(TAG, "Registration Id is successfully fetched");
+                        student.saveRegistrationID(ID);
+                        fetchAttendance(student.getRegistrationID());
+                    } else {
+                        data.postValue("NODATA");
+                        Log.d(TAG, "Registration Id is Unsuccessfully fetched");
+                    }
                 } catch (JSONException e) {
+                    data.postValue("NODATA");
                     e.printStackTrace();
+                    Log.d(TAG, "Registration Id is Unsuccessfully fetched -- extraction of ID error");
                 }
             }
         });
@@ -157,26 +168,30 @@ public class Server {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                Log.d(TAG, "onFailure:fetch attendance data   " + e.toString());
+                data.postValue("NODATA");
+                Log.d(TAG, "Attedance Fetch Connection Unsuccessful");
             }
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Log.d(TAG, "fetch attendacne okey");
+                Log.d(TAG, "Attedance Fetch Connection successful");
                 Response lResponse = response;
                 JSONObject lJsonResponse;
                 try {
                     lJsonResponse = new JSONObject(Objects.requireNonNull(lResponse.body()).source().readUtf8());
                     if (new AttendanceData(lJsonResponse.toString()).numberOfSubjects() != 0){
+                        Log.d(TAG, "Attendance Data Available");
                         student.saveAttendance(lJsonResponse.toString());
-                        data.postValue(student.getAttendance());
+                        data.postValue(lJsonResponse.toString());
                     }else {
                         data.postValue("NODATA");
+                        Log.d(TAG, "Attendance Data Not Available");
                     }
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.d(TAG, "Attendance Data NOT Available -- error during Extraction");
                 }
 
 

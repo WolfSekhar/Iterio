@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.beslenge.iterio.viewmodel.AttendanceFragmentViewModel;
 import com.beslenge.iterio.model.AttendanceData;
 import com.beslenge.iterio.data.Pref;
@@ -32,7 +33,7 @@ public class AttendanceFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private String minimum;
-    // --Commented out by Inspection (30/8/20 5:17 PM):private final String TAG = "BOB";
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +47,6 @@ public class AttendanceFragment extends Fragment {
         instantiateViewModels();
         adapter = new AttendanceFragmentRecyclerAdapter(requireContext(), Objects.requireNonNull(data), minimum);
         layoutManager = new LinearLayoutManager(requireContext());
-        //updateAttendanceView();
         updateAttendanceView();
 
     }
@@ -67,34 +67,21 @@ public class AttendanceFragment extends Fragment {
     }
 
     private void updateAttendanceView() {
+        assert data != null;
+        assert minimum != null;
+        assert adapter != null;
         attendanceviewModel.getAttendanceData().observe(AttendanceFragment.this, s -> {
 
-            if (Objects.equals(sharedPreferences.getString(Pref.status, "null"), "success")) {
-                saveAttendanceData(data);
-                data = sharedPreferences.getString(Pref.attendanceData, "NA");
-                minimum = sharedPreferences.getString(Pref.minimumAttendance, "25");
+            adapter.updateAdapter(new AttendanceData(s), minimum);
 
-                //Update adapter with new/old data
-                assert data != null;
-                assert minimum != null;
-                assert adapter != null;
-                adapter.updateAdapter(new AttendanceData(data), minimum);
-            }
         });
 
         attendanceviewModel.getMinimumAttendance().observe(AttendanceFragment.this, s -> {
             data = sharedPreferences.getString(Pref.attendanceData, "NA");
             minimum = sharedPreferences.getString(Pref.minimumAttendance, "25");
-            //Update adapter with new/old data
-            assert data != null;
-            assert minimum != null;
-            assert adapter != null;
+
             adapter.updateAdapter(new AttendanceData(data), minimum);
         });
-    }
-
-    private void saveAttendanceData(String data) {
-        editor.putString(Pref.attendanceData, data).apply();
     }
 
     private void prepareSharedPreferences() {
