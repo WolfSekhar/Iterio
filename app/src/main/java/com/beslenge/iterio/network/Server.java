@@ -182,7 +182,7 @@ public class Server {
                     if (new AttendanceData(lJsonResponse.toString()).numberOfSubjects() != 0){
                         Log.d(TAG, "Attendance Data Available");
                         student.saveAttendance(lJsonResponse.toString());
-                        data.postValue(student.getAttendance());
+                        data.postValue(lJsonResponse.toString());
                     }else {
                         data.postValue("NODATA");
                         Log.d(TAG, "Attendance Data Not Available");

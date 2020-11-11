@@ -241,7 +241,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void saveMinimumAttendance(String minAttendanceVal) {
-        editor.putString(Pref.minimumAttendance, minAttendanceVal).apply();
+        editor.putString(Pref.minimumAttendance, minAttendanceVal).commit();
         attendanceviewModel.getMinimumAttendance().setValue(minAttendanceVal);
     }
 
@@ -290,7 +290,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void observeDataAndMessage() {
         myViewmodel.getData().observe(DashboardActivity.this, s -> {
-            attendanceviewModel.getAttendanceData().setValue(s);
+            attendanceviewModel.getAttendanceData().postValue(s);
             fragmentManager.executePendingTransactions();
 
             Fragment fragment = fragmentManager.findFragmentById(frameLayout.getId());
