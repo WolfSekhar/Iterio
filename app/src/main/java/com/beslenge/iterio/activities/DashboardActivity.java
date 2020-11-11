@@ -75,46 +75,44 @@ public class DashboardActivity extends AppCompatActivity {
 
         toolbar.setOnMenuItemClickListener(item -> {
 
-            switch (item.getItemId()) {
-                case R.id.menu_item_update:
-                    progressBar.setVisibility(View.VISIBLE);
-                    progressBar.setIndeterminate(true);
-                    refetchAttendance();
-                    return true;
-                case R.id.menu_item_name:
-                    new MaterialAlertDialogBuilder(DashboardActivity.this)
-                            .setTitle("Name :")
-                            .setMessage(sharedPreferences.getString(Pref.name, "NA"))
-                            .show();
-                    return true;
-                case R.id.menu_item_set_minimum_attendance:
-                case R.id.menu_item_set_theme:
-                    return true;
-                case R.id.menu_item_credit:
-                    new MaterialAlertDialogBuilder(DashboardActivity.this)
-                            .setView(R.layout.credits_view)
-                            .show();
-                    return true;
-                case R.id.menu_item_logout:
-                    new MaterialAlertDialogBuilder(DashboardActivity.this)
-                            .setTitle("Logout !")
-                            .setMessage("Do you really want to logout ?  :(")
-                            .setNeutralButton("canel", (dialog, which) -> Snackbar.make(frameLayout, "Logout Cancelled", BaseTransientBottomBar.LENGTH_SHORT).show())
-                            .setPositiveButton("Yes", (dialog, which) -> {
-                                editor.remove(Pref.status);
-                                editor.remove(Pref.minimumAttendance);
-                                editor.remove(Pref.attendanceData);
-                                editor.remove(Pref.cookie);
-                                editor.remove(Pref.registrationID);
-                                editor.remove(Pref.name);
-                                editor.apply();
-                                startActivity(new Intent().setClass(DashboardActivity.this, LauncherActivity.class));
-                                finish();
-                            }).show();
-                    return true;
-                default:
-                    return false;
+            int itemId = item.getItemId();
+            if (itemId == R.id.menu_item_update) {
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setIndeterminate(true);
+                refetchAttendance();
+                return true;
+            } else if (itemId == R.id.menu_item_name) {
+                new MaterialAlertDialogBuilder(DashboardActivity.this)
+                        .setTitle("Name :")
+                        .setMessage(sharedPreferences.getString(Pref.name, "NA"))
+                        .show();
+                return true;
+            } else if (itemId == R.id.menu_item_set_minimum_attendance || itemId == R.id.menu_item_set_theme) {
+                return true;
+            } else if (itemId == R.id.menu_item_credit) {
+                new MaterialAlertDialogBuilder(DashboardActivity.this)
+                        .setView(R.layout.credits_view)
+                        .show();
+                return true;
+            } else if (itemId == R.id.menu_item_logout) {
+                new MaterialAlertDialogBuilder(DashboardActivity.this)
+                        .setTitle("Logout !")
+                        .setMessage("Do you really want to logout ?  :(")
+                        .setNeutralButton("cancel", (dialog, which) -> Snackbar.make(frameLayout, "Logout Cancelled", BaseTransientBottomBar.LENGTH_SHORT).show())
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            editor.remove(Pref.status);
+                            editor.remove(Pref.minimumAttendance);
+                            editor.remove(Pref.attendanceData);
+                            editor.remove(Pref.cookie);
+                            editor.remove(Pref.registrationID);
+                            editor.remove(Pref.name);
+                            editor.apply();
+                            startActivity(new Intent().setClass(DashboardActivity.this, LauncherActivity.class));
+                            finish();
+                        }).show();
+                return true;
             }
+            return false;
 
         });
     }
@@ -213,30 +211,21 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void onClickOfSetAttendance(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_attendance_25:
-                saveMinimumAttendance("25");
-                break;
-            case R.id.menu_item_attendance_35:
-                saveMinimumAttendance("35");
-                break;
-            case R.id.menu_item_attendance_50:
-                saveMinimumAttendance("50");
-                break;
-            case R.id.menu_item_attendance_60:
-                saveMinimumAttendance("60");
-                break;
-            case R.id.menu_item_attendance_75:
-                saveMinimumAttendance("75");
-                break;
-            case R.id.menu_item_attendance_85:
-                saveMinimumAttendance("85");
-                break;
-            case R.id.menu_item_attendance_95:
-                saveMinimumAttendance("95");
-                break;
-            default:
-
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_item_attendance_25) {
+            saveMinimumAttendance("25");
+        } else if (itemId == R.id.menu_item_attendance_35) {
+            saveMinimumAttendance("35");
+        } else if (itemId == R.id.menu_item_attendance_50) {
+            saveMinimumAttendance("50");
+        } else if (itemId == R.id.menu_item_attendance_60) {
+            saveMinimumAttendance("60");
+        } else if (itemId == R.id.menu_item_attendance_75) {
+            saveMinimumAttendance("75");
+        } else if (itemId == R.id.menu_item_attendance_85) {
+            saveMinimumAttendance("85");
+        } else if (itemId == R.id.menu_item_attendance_95) {
+            saveMinimumAttendance("95");
         }
     }
 
@@ -262,20 +251,17 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void onSetTheme(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_light:
-                editor.putInt(Pref.theme, AppCompatDelegate.MODE_NIGHT_NO).commit();
-                if (isSelectedTheme(AppCompatDelegate.getDefaultNightMode(), AppCompatDelegate.MODE_NIGHT_NO)) {
-                    restartActivity();
-                }
-                break;
-            case R.id.menu_item_dark:
-                editor.putInt(Pref.theme, AppCompatDelegate.MODE_NIGHT_YES).commit();
-                if (isSelectedTheme(AppCompatDelegate.getDefaultNightMode(), AppCompatDelegate.MODE_NIGHT_YES)) {
-                    restartActivity();
-                }
-                break;
-            default:
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_item_light) {
+            editor.putInt(Pref.theme, AppCompatDelegate.MODE_NIGHT_NO).commit();
+            if (isSelectedTheme(AppCompatDelegate.getDefaultNightMode(), AppCompatDelegate.MODE_NIGHT_NO)) {
+                restartActivity();
+            }
+        } else if (itemId == R.id.menu_item_dark) {
+            editor.putInt(Pref.theme, AppCompatDelegate.MODE_NIGHT_YES).commit();
+            if (isSelectedTheme(AppCompatDelegate.getDefaultNightMode(), AppCompatDelegate.MODE_NIGHT_YES)) {
+                restartActivity();
+            }
         }
     }
 

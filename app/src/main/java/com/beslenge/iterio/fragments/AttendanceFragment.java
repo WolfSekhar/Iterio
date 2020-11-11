@@ -33,7 +33,7 @@ public class AttendanceFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private String minimum;
-    // --Commented out by Inspection (30/8/20 5:17 PM):private final String TAG = "BOB";
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +47,6 @@ public class AttendanceFragment extends Fragment {
         instantiateViewModels();
         adapter = new AttendanceFragmentRecyclerAdapter(requireContext(), Objects.requireNonNull(data), minimum);
         layoutManager = new LinearLayoutManager(requireContext());
-        //updateAttendanceView();
         updateAttendanceView();
 
     }
