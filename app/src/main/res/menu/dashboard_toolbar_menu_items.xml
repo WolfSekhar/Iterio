@@ -12,7 +12,7 @@
         android:id="@+id/menu_item_name"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="@string/name"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_item_set_minimum_attendance"
         android:enabled="true"
