@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/menu_item_update"
+        android:icon="@drawable/ic_round_refresh_24"
+        android:title="@string/refresh"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_item_name"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/name"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_item_set_minimum_attendance"
+        android:enabled="true"
+        android:title="@string/set_attendance"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:checkableBehavior="single"
+                android:enabled="true"
+                android:menuCategory="alternative"
+                android:visible="true">
+                <item
+                    android:id="@+id/menu_item_attendance_25"
+                    android:enabled="true"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_25" />
+                <item
+                    android:id="@+id/menu_item_attendance_35"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_35" />
+                <item
+                    android:id="@+id/menu_item_attendance_50"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_50" />
+                <item
+                    android:id="@+id/menu_item_attendance_60"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_60" />
+                <item
+                    android:id="@+id/menu_item_attendance_75"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_75" />
+                <item
+                    android:id="@+id/menu_item_attendance_85"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_85" />
+                <item
+                    android:id="@+id/menu_item_attendance_95"
+                    android:onClick="onClickOfSetAttendance"
+                    android:title="@string/Percent_95" />
+
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_item_set_theme"
+        android:enabled="true"
+        android:title="@string/set_theme"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:checkableBehavior="single"
+                android:enabled="true"
+                android:menuCategory="alternative"
+                android:visible="true">
+                <item
+                    android:id="@+id/menu_item_light"
+                    android:onClick="onSetTheme"
+                    android:title="@string/light" />
+                <item
+                    android:id="@+id/menu_item_dark"
+                    android:onClick="onSetTheme"
+                    android:title="@string/dark" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/menu_item_credit"
+        android:title="@string/about"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_item_logout"
+        android:title="@string/logout"
+        app:showAsAction="never">
+
+    </item>
+
+
+</menu>

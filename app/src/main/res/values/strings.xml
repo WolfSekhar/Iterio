@@ -1,0 +1,46 @@
+<resources>
+    <string name="version">1.0</string>
+    <string name="app_name">ITERio</string>
+    <string name="toolbar_title">ITERio</string>
+    <string name="user_id">UserID</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="Percent_25">25 %</string>
+    <string name="Percent_35">35 %</string>
+    <string name="Percent_50">50 %</string>
+    <string name="Percent_60">60 %</string>
+    <string name="Percent_75">75 %</string>
+    <string name="Percent_85">85 %</string>
+    <string name="Percent_95">95 %</string>
+    <string name="credit_text">It\'s an UNOFFICIAL attendance app for ITER. Attendance data shown here are directly fetched from ITER server. Accuracy of attendance depends on server.
+        \n USER DISCRETION IS ADVISED.</string>
+    <string name="developed_by_sekhar">Developed by : P.Sekhar</string>
+    <string name="about">About</string>
+    <string name="need">Need "</string>
+    <string name="bunk">Bunk "</string>
+    <string name="updated_date">Updated :</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="credits">Credits</string>
+    <string name="logout">Logout</string>
+    <string name="set_theme">Set Theme</string>
+    <string name="set_attendance">Set Min Attendance</string>
+    <string name="name">Name</string>
+    <string name="refresh">refresh</string>
+    <string name="_100">100</string>
+    <string name="_60">60</string>
+    <string name="percentage_sign">%</string>
+    <string name="subject_type">Subject Type</string>
+    <string name="classes_attended">Classes Attended</string>
+    <string name="subject">Subject</string>
+    <string name="classes_need_to_attend1">Classes need to attend1</string>
+    <string name="classes_need_to_attend2">Classes need to attend2</string>
+    <string name="classes_need_to_bunk1">Classes need to bunk1</string>
+    <string name="classes_need_to_bunk2">Classes need to bunk2</string>
+    <string name="classes_need_to_bunk3">Classes need to bunk3</string>
+    <string name="time_updated">time_updated</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="no_data_available">Attendance Data Not Available in Server</string>
+    <string name="check_again_later">Check again later</string>
+
+</resources>
