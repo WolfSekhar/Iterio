@@ -11,17 +11,11 @@ import com.beslenge.iterio.utils.Repository;
 public class MyViewmodel extends AndroidViewModel {
 
     private static Repository repository;
-    private MutableLiveData<String> data;
-    private MutableLiveData<String> message;
 
 
     public MyViewmodel(@NonNull Application application) {
         super(application);
-        data = new MutableLiveData<>();
-        message = new MutableLiveData<>();
         repository = new Repository(application.getApplicationContext());
-        message = repository.getMessage();
-        data = repository.getData();
 
     }
 
@@ -30,11 +24,12 @@ public class MyViewmodel extends AndroidViewModel {
     }
 
     public MutableLiveData<String> getData(){
-        return data;
+        return repository.getData();
     }
 
     public MutableLiveData<String> getMessage() {
-        return message;
+        return repository.getMessage();
+
     }
 
 }

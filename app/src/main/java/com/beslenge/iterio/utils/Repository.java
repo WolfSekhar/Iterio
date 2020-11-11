@@ -33,8 +33,8 @@ public class Repository {
     private class MyThread extends Thread{
         @Override
         public void run() {
-            setPriority(MIN_PRIORITY);
-            server.setUserAndPasswordAndFetchData(username,password);
+            setPriority(MAX_PRIORITY);
+            server.setUserAndPasswordAndFetchData(username, password);
         }
     }
 

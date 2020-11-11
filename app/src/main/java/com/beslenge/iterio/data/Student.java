@@ -17,28 +17,28 @@ public class Student {
     }
     public void saveUserIDAndPassword(@NonNull String userID, @NonNull String password){
         editor.putString(Pref.userID,userID);
-        editor.putString(Pref.password,password);
-        editor.apply();
+        editor.putString(Pref.password, password);
+        editor.commit();
     }
 
     public void saveName(@NonNull String name){
-        editor.putString(Pref.name,name);
-        editor.apply();
+        editor.putString(Pref.name, name);
+        editor.commit();
     }
 
     public void saveLoginStatus(@NonNull String status){
-        editor.putString(Pref.status,status);
-        editor.apply();
+        editor.putString(Pref.status, status);
+        editor.commit();
     }
 
     public void saveRegistrationID(@NonNull String registrationID){
-        editor.putString(Pref.registrationID,registrationID);
-        editor.apply();
+        editor.putString(Pref.registrationID, registrationID);
+        editor.commit();
     }
 
     public void saveAttendance(@NonNull String attendanceData){
-        editor.putString(Pref.attendanceData,attendanceData);
-        editor.apply();
+        editor.putString(Pref.attendanceData, attendanceData);
+        editor.commit();
     }
 
     @Nullable
