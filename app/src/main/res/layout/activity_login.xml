@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:id="@+id/linear_layout_login_layout"
-        android:layout_width="220dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guideline_centre_login_layout"
@@ -42,7 +42,8 @@
                 android:id="@+id/editText_userId_login_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="number"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +58,8 @@
                 android:id="@+id/editText_password_login_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="14sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
@@ -73,9 +75,9 @@
         android:id="@+id/button_login_login_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
         android:text="@string/login"
         android:textSize="16sp"
+        app:elevation="10dp"
         app:icon="@drawable/ic_baseline_arrow_forward_ios_24"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
