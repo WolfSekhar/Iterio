@@ -9,9 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.beslenge.iterio.model.BunkCalculator;
-import com.beslenge.iterio.model.AttendanceData;
 import com.beslenge.iterio.R;
+import com.beslenge.iterio.model.AttendanceData;
+import com.beslenge.iterio.model.BunkCalculator;
 
 public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<AttendanceFragmentRecyclerAdapter.ViewHolder> {
     private final Context context;
@@ -34,14 +34,20 @@ public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<Atte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.textView_percentage_before_decimal.setText(percentageBeforeDecimal(data.getAttendancePercentage().get(position)));
-        holder.getTextView_percentage_after_decimal.setText(".".concat(percentageAfterDecimal(data.getAttendancePercentage().get(position))));
-        holder.textView_subject.setText(data.getSubjects().get(position));
+
+        double percentage = data.getAttendancePercentage().get(position);
+        String subjectName = data.getSubjects().get(position);
+        String subjectType = data.getTypeOfClass().get(position);
+        int attendedClasses = data.getAttendedClasses().get(position);
+        int totalClasses = data.getTotalClasses().get(position);
+
         /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-        holder.textView_subject_type.setText(data.getTypeOfClass().get(position).concat("   "));
-        holder.textView_classes_attended.setText(String.valueOf(data.getAttendedClasses().get(position))
-                .concat("/")
-                .concat(String.valueOf(data.getTotalClasses().get(position))).concat("   "));
+        holder.textView_percentage_before_decimal.setText(percentageBeforeDecimal(percentage));
+        holder.getTextView_percentage_after_decimal.setText(".".concat(percentageAfterDecimal(percentage)));
+        holder.textView_subject.setText(subjectName);
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+        holder.textView_subject_type.setText(subjectType.concat("   "));
+        holder.textView_classes_attended.setText(String.valueOf(attendedClasses).concat("/").concat(String.valueOf(totalClasses)).concat("   "));
         /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
         holder.textView_needtoAttend1.setVisibility(View.VISIBLE);
@@ -49,6 +55,17 @@ public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<Atte
         holder.textView_needtoBunk1.setVisibility(View.VISIBLE);
         holder.textView_needtoBunk2.setVisibility(View.VISIBLE);
         holder.textView_needtoBunk3.setVisibility(View.VISIBLE);
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+        if (percentage < 35.0) {
+            holder.side_bar.setBackgroundColor(context.getResources().getColor(R.color.google_red));
+        } else if (percentage < getMinimum(minAttendance)) {
+            holder.side_bar.setBackgroundColor(context.getResources().getColor(R.color.google_yellow));
+        } else {
+            holder.side_bar.setBackgroundColor(context.getResources().getColor(R.color.google_blue));
+        }
+
+        /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
         if (data.getAttendancePercentage().get(position) > getMinimum(minAttendance)) {
             holder.textView_needtoAttend1.setVisibility(View.GONE);
             holder.textView_needtoAttend2.setVisibility(View.GONE);
@@ -95,8 +112,9 @@ public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<Atte
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView_percentage_before_decimal, getTextView_percentage_after_decimal, textView_subject,
-                textView_classes_attended, textView_needtoAttend1,textView_needtoAttend2, textView_needtoBunk1,textView_needtoBunk2, textView_needtoBunk3,
+                textView_classes_attended, textView_needtoAttend1, textView_needtoAttend2, textView_needtoBunk1, textView_needtoBunk2, textView_needtoBunk3,
                 textView_subject_type, textView_classes_updatedON;
+        private final View side_bar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,6 +129,7 @@ public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<Atte
             textView_needtoBunk3 = itemView.findViewById(R.id.textView_classes_need_to_bunk3);
             textView_subject_type = itemView.findViewById(R.id.textview_subject_type);
             textView_classes_updatedON = itemView.findViewById(R.id.textView_classes_updated);
+            side_bar = itemView.findViewById(R.id.attendance_item_side_bar_view);
         }
     }
 

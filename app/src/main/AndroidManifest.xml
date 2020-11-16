@@ -32,6 +32,7 @@
         </activity>
         <activity
             android:name=".activities.LauncherActivity"
+            android:configChanges="uiMode"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
