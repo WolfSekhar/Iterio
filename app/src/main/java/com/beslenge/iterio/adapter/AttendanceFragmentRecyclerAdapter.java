@@ -57,7 +57,7 @@ public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<Atte
         holder.textView_needtoBunk3.setVisibility(View.VISIBLE);
 
         /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-        if (percentage < 25.0) {
+        if (percentage < 35.0) {
             holder.side_bar.setBackgroundColor(context.getResources().getColor(R.color.google_red));
         } else if (percentage < getMinimum(minAttendance)) {
             holder.side_bar.setBackgroundColor(context.getResources().getColor(R.color.google_yellow));
