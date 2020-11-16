@@ -5,4 +5,7 @@
     <color name="colorAccent">#3700B3</color>
     <color name="green">#388E3C</color>
     <color name="colorStatusNavBar">#FFFFFF</color>
+    <color name="google_blue">#4885ed</color>
+    <color name="google_yellow">#f4c20d</color>
+    <color name="google_red">#db3236</color>
 </resources>

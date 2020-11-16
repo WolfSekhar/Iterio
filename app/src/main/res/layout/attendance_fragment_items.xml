@@ -18,9 +18,10 @@
             android:orientation="horizontal">
 
             <View
-                android:layout_width="4dp"
+                android:id="@+id/attendance_item_side_bar_view"
+                android:layout_width="5dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary" />
+                android:background="@color/google_blue" />
 
             <LinearLayout
                 android:layout_width="match_parent"
