@@ -3,7 +3,7 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#D7FF8F00</item>
+        <item name="colorPrimary">#FF9800</item>
         <item name="colorPrimaryDark">#151515</item>
         <item name="colorAccent">#FF8F00</item>
         <item name="colorOnPrimary">#FFFFF0</item>

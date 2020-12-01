@@ -175,6 +175,8 @@ public class DashboardActivity extends AppCompatActivity {
             getIntent().removeExtra("code");
             stopStatus=100;
         } else {
+            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setIndeterminate(true);
             refetchAttendance();
         }
         super.onStart();
