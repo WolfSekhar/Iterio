@@ -1,5 +1,5 @@
 <resources>
-    <string name="version">1.3</string>
+    <string name="version">Version: 1.3</string>
     <string name="app_name">ITERio</string>
     <string name="toolbar_title">ITERio</string>
     <string name="user_id">UserID</string>

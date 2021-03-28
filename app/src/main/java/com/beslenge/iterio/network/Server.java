@@ -34,7 +34,7 @@ import okhttp3.Response;
  */
 
 
-@SuppressWarnings("UnnecessaryLocalVariable")
+@SuppressWarnings({"UnnecessaryLocalVariable", "NullableProblems"})
 public class Server {
     private final JsonEntity jsonEntity = new JsonEntity();
     @Nullable
@@ -43,6 +43,9 @@ public class Server {
     public final String TAG = "BOB";
     private String username;
     private String password;
+    private final String IPAddress1= "136.233.14.3:8282";
+    private final String IPAddress2= "103.112.27.37:8282";
+    private String IPADDRESS;
     @NonNull
     private final Student student;
     @NonNull
@@ -58,7 +61,7 @@ public class Server {
         data = new MutableLiveData<>();
         message = new MutableLiveData<>();
         student = new Student(context);
-
+        IPADDRESS = IPAddress2;
     }
 
     public void setUserAndPasswordAndFetchData(String username, String password) {
@@ -66,7 +69,24 @@ public class Server {
         this.username = username;
         this.password = password;
 
-        login();
+        isIpAavailable();
+    }
+
+    private void isIpAavailable (){
+        final Request request = new Request.Builder()
+                .url("http://" + IPADDRESS).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                IPADDRESS = IPAddress1;
+                login();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                login();
+            }
+        });
     }
 
     private void login() {
@@ -74,14 +94,14 @@ public class Server {
 
         //Request URL
         final Request request = new Request.Builder()
-                .url("http://136.233.14.3:8282/CampusPortalSOA/login")
+                    .url("http://" + IPADDRESS + "/CampusPortalSOA/login")
                 .post(RequestBody.create(JSON, String.valueOf(jsonEntity.getIdpasswordJsonObject())))
                 .build();
         // New Asynchronous call
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                message.postValue("ITER SERVER Down");
+                message.postValue("ITER SERVER DOWN");
                 Log.d(TAG, "Login connection failed");
             }
 
@@ -118,7 +138,7 @@ public class Server {
     /* Getting Student Registration ID */
     private void fetchRegistrationID() {
         Request request = new Request.Builder()
-                .url("http://136.233.14.3:8282/CampusPortalSOA/studentSemester/lov")
+                .url("http://" + IPADDRESS + "/CampusPortalSOA/studentSemester/lov")
                 .addHeader("Cookie", "JSESSIONID=" + cookie.getCookie())
                 .post(RequestBody.create(JSON, String.valueOf(jsonEntity.getEmptyJsonArray())))
                 .build();
@@ -161,7 +181,7 @@ public class Server {
     public void fetchAttendance(String registrationID) {
 
         Request request = new Request.Builder()
-                .url("http://136.233.14.3:8282/CampusPortalSOA/attendanceinfo")
+                .url("http://" + IPADDRESS + "/CampusPortalSOA/attendanceinfo")
                 .addHeader("Cookie", "JSESSIONID=" + cookie.getCookie())
                 .post(RequestBody.create(JSON, "{registerationid:" + registrationID + "}"))
                 .build();
