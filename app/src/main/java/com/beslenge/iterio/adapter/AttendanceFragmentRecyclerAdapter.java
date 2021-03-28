@@ -43,7 +43,12 @@ public class AttendanceFragmentRecyclerAdapter extends RecyclerView.Adapter<Atte
 
         /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
         holder.textView_percentage_before_decimal.setText(percentageBeforeDecimal(percentage));
-        holder.getTextView_percentage_after_decimal.setText(".".concat(percentageAfterDecimal(percentage)));
+        if (percentage==100){
+            holder.getTextView_percentage_after_decimal.setVisibility(View.GONE);
+        }else {
+            holder.getTextView_percentage_after_decimal.setText(".".concat(percentageAfterDecimal(percentage)));
+        }
+
         holder.textView_subject.setText(subjectName);
         /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
         holder.textView_subject_type.setText(subjectType.concat("   "));
