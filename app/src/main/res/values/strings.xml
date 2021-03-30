@@ -1,8 +1,8 @@
 <resources>
-    <string name="version">Version: 1.4</string>
+    <string name="version">Version: 1.5</string>
     <string name="app_name">ITERio</string>
     <string name="toolbar_title">ITERio</string>
-    <string name="user_id">UserID</string>
+    <string name="user_id">Regd ID</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="Percent_25">25 %</string>
