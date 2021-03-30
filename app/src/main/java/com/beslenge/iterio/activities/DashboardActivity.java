@@ -97,7 +97,7 @@ public class DashboardActivity extends AppCompatActivity {
             } else if (itemId == R.id.menu_item_logout) {
                 new MaterialAlertDialogBuilder(DashboardActivity.this)
                         .setTitle("Logout !")
-                        .setMessage("Do you really want to logout ?  :(")
+                        .setMessage("Do you really want to logout?")
                         .setNeutralButton("cancel", (dialog, which) -> Snackbar.make(frameLayout, "Logout Cancelled", BaseTransientBottomBar.LENGTH_SHORT).show())
                         .setPositiveButton("Yes", (dialog, which) -> {
                             editor.remove(Pref.status);
