@@ -14,7 +14,7 @@
     <string name="Percent_95">95 %</string>
     <string name="credit_text">It\'s an UNOFFICIAL attendance app for ITER. Attendance data shown here are directly fetched from ITER server. Accuracy of attendance depends on server.
         \n USER DISCRETION IS ADVISED.</string>
-    <string name="developed_by_sekhar">Developed by : P.Sekhar</string>
+    <string name="developed_by_sekhar">Developed by : P. Sekhar</string>
     <string name="about">About</string>
     <string name="need">Need "</string>
     <string name="bunk">Bunk "</string>

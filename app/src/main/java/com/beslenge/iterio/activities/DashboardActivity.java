@@ -77,8 +77,8 @@ public class DashboardActivity extends AppCompatActivity {
 
             int itemId = item.getItemId();
             if (itemId == R.id.menu_item_update) {
-                progressBar.setVisibility(View.VISIBLE);
                 progressBar.setIndeterminate(true);
+                progressBar.setVisibility(View.VISIBLE);
                 refetchAttendance();
                 return true;
             } else if (itemId == R.id.menu_item_name) {
@@ -175,8 +175,8 @@ public class DashboardActivity extends AppCompatActivity {
             getIntent().removeExtra("code");
             stopStatus=100;
         } else {
-            progressBar.setVisibility(View.VISIBLE);
             progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
             refetchAttendance();
         }
         super.onStart();
@@ -303,17 +303,20 @@ public class DashboardActivity extends AppCompatActivity {
         myViewmodel.getMessage().observe(DashboardActivity.this, s -> {
             if (s.equals("Login Successful")) {
                 runOnUiThread(() -> {
+                    progressBar.setVisibility(View.INVISIBLE);
                     if (stopStatus != 100) {
                         Snackbar.make(findViewById(R.id.menu_item_update), "Attendance Updated", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
-                    progressBar.setVisibility(View.GONE);
                 });
 
             } else {
-                new Handler().postDelayed(() -> runOnUiThread(() -> {
-                    Snackbar.make(findViewById(R.id.menu_item_update), s, BaseTransientBottomBar.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
-                }), 4000);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Snackbar.make(findViewById(R.id.menu_item_update), s, BaseTransientBottomBar.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
 
             }
         });
