@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +11,7 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.beslenge.iterio.R;
 import com.beslenge.iterio.data.Pref;
 import com.beslenge.iterio.fragments.AttendanceFragment;
@@ -77,8 +78,8 @@ public class DashboardActivity extends AppCompatActivity {
 
             int itemId = item.getItemId();
             if (itemId == R.id.menu_item_update) {
-                progressBar.setVisibility(View.VISIBLE);
                 progressBar.setIndeterminate(true);
+                progressBar.setVisibility(View.VISIBLE);
                 refetchAttendance();
                 return true;
             } else if (itemId == R.id.menu_item_name) {
@@ -175,8 +176,8 @@ public class DashboardActivity extends AppCompatActivity {
             getIntent().removeExtra("code");
             stopStatus=100;
         } else {
-            progressBar.setVisibility(View.VISIBLE);
             progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
             refetchAttendance();
         }
         super.onStart();
@@ -270,6 +271,7 @@ public class DashboardActivity extends AppCompatActivity {
     private void restartActivity() {
         startActivity(new Intent().setClass(DashboardActivity.this, LauncherActivity.class).putExtra("code", 300));
         finish();
+
     }
 
     private boolean isSelectedTheme(int currentMode, int setMode) {
@@ -303,17 +305,20 @@ public class DashboardActivity extends AppCompatActivity {
         myViewmodel.getMessage().observe(DashboardActivity.this, s -> {
             if (s.equals("Login Successful")) {
                 runOnUiThread(() -> {
+                    progressBar.setVisibility(View.INVISIBLE);
                     if (stopStatus != 100) {
                         Snackbar.make(findViewById(R.id.menu_item_update), "Attendance Updated", BaseTransientBottomBar.LENGTH_SHORT).show();
                     }
-                    progressBar.setVisibility(View.GONE);
                 });
 
             } else {
-                new Handler().postDelayed(() -> runOnUiThread(() -> {
-                    Snackbar.make(findViewById(R.id.menu_item_update), s, BaseTransientBottomBar.LENGTH_SHORT).show();
-                    progressBar.setVisibility(View.GONE);
-                }), 4000);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Snackbar.make(findViewById(R.id.menu_item_update), s, BaseTransientBottomBar.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
 
             }
         });

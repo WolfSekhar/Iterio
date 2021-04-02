@@ -23,12 +23,11 @@
             app:menu="@menu/dashboard_toolbar_menu_items"
             app:title="@string/toolbar_title"
             app:titleTextAppearance="@style/TextAppearance.Shrine.Headline6"/>
-        <ProgressBar
+        <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progress_horizontal_dashboard_activity"
             android:layout_width="match_parent"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:visibility="gone"
-            android:layout_height="wrap_content"/>
+            android:layout_height="6dp"
+            android:visibility="invisible" />
 
         <FrameLayout
             android:id="@+id/frame_layout"

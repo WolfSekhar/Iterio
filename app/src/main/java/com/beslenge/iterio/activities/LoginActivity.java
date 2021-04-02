@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         aLoginButton.setOnClickListener(v -> {
-            progressBar.setVisibility(View.VISIBLE);
             progressBar.setIndeterminate(true);
+            progressBar.setVisibility(View.VISIBLE);
             setDefaultMinimumAttendancePercentage();
             aMyViewmodel.setUserAndPasswordAndFetchData(aUsernameEdittext.getText().toString(), aPasswordEdittext.getText().toString());
 

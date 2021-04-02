@@ -1,5 +1,5 @@
 <resources>
-    <string name="version">Version: 1.5</string>
+    <string name="version">Version: 1.6</string>
     <string name="app_name">ITERio</string>
     <string name="toolbar_title">ITERio</string>
     <string name="user_id">Regd ID</string>
@@ -14,7 +14,7 @@
     <string name="Percent_95">95 %</string>
     <string name="credit_text">It\'s an UNOFFICIAL attendance app for ITER. Attendance data shown here are directly fetched from ITER server. Accuracy of attendance depends on server.
         \n USER DISCRETION IS ADVISED.</string>
-    <string name="developed_by_sekhar">Developed by : P.Sekhar</string>
+    <string name="developed_by_sekhar">Developed by : P. Sekhar</string>
     <string name="about">About</string>
     <string name="need">Need "</string>
     <string name="bunk">Bunk "</string>
