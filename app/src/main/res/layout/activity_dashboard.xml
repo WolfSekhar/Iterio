@@ -22,7 +22,8 @@
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/dashboard_toolbar_menu_items"
             app:title="@string/toolbar_title"
-            app:titleTextAppearance="@style/TextAppearance.Shrine.Headline6"/>
+            app:titleTextAppearance="@style/TextAppearance.Shrine.Headline6" />
+
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progress_horizontal_dashboard_activity"
             android:layout_width="match_parent"

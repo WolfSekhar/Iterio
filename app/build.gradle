@@ -1,21 +1,23 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId "com.beslenge.iterio"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 7
         versionName '1.6'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        // Required when setting minSdkVersion to 20 or lower
         multiDexEnabled true
+        // Required when setting minSdkVersion to 20 or lower
+        //multiDexEnabled true
         //for supporting vectors below api 21
-        vectorDrawables.useSupportLibrary = true
+        //vectorDrawables.useSupportLibrary = true
 
 
     }
@@ -47,35 +49,38 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.5.0"
+    implementation "androidx.core:core-ktx:1.5.0"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //Material theme component
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0-beta01'
 
     //OKHTTP3 networking component but latest version not working with android 4.4 or sdk 19
     //implementation 'com.squareup.okhttp3:okhttp:4.8.1'
     //noinspection GradleDependency
-    implementation 'com.squareup.okhttp3:okhttp:3.12.12'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    //For html extraction
+    implementation 'org.jsoup:jsoup:1.13.1'
 
 
     // Lifecycle component
     def lifecycle_version = "2.3.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
-    def fragment_version = "1.3.2"
-    implementation "androidx.fragment:fragment:$fragment_version"
+    implementation "androidx.fragment:fragment-ktx:1.3.4"
     //androidx transition component
     //implementation 'androidx.transition:transition:1.3.1'
 
     //Lottie animation component
-    def lottieVersion = '3.6.1'
+    def lottieVersion = '3.7.0'
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
 

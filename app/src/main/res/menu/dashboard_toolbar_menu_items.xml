@@ -18,44 +18,6 @@
         android:enabled="true"
         android:title="@string/set_attendance"
         app:showAsAction="never">
-        <menu>
-            <group
-                android:checkableBehavior="single"
-                android:enabled="true"
-                android:menuCategory="alternative"
-                android:visible="true">
-                <item
-                    android:id="@+id/menu_item_attendance_25"
-                    android:enabled="true"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_25" />
-                <item
-                    android:id="@+id/menu_item_attendance_35"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_35" />
-                <item
-                    android:id="@+id/menu_item_attendance_50"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_50" />
-                <item
-                    android:id="@+id/menu_item_attendance_60"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_60" />
-                <item
-                    android:id="@+id/menu_item_attendance_75"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_75" />
-                <item
-                    android:id="@+id/menu_item_attendance_85"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_85" />
-                <item
-                    android:id="@+id/menu_item_attendance_95"
-                    android:onClick="onClickOfSetAttendance"
-                    android:title="@string/Percent_95" />
-
-            </group>
-        </menu>
     </item>
     <item
         android:id="@+id/menu_item_set_theme"
@@ -79,6 +41,10 @@
             </group>
         </menu>
     </item>
+    <item
+        android:id="@+id/menu_item_faq"
+        android:title="@string/FAQ"
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_item_credit"
         android:title="@string/about"
