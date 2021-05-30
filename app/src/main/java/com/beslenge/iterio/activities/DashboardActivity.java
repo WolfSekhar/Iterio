@@ -272,7 +272,7 @@ public class DashboardActivity extends AppCompatActivity {
                     editor.remove(Pref.attendanceData);
                     editor.commit();
                     fragmentManager.beginTransaction()
-                            .replace(frameLayout.getId(), new NoDataAvailableFragment())
+                            .replace(frameLayout.getId(), new NoDataAvailableFragment(), FragmentTag.UNAVAILABLE.toString())
                             .commit();
                 }
             }
