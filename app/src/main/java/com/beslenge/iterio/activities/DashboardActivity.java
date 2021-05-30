@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.beslenge.iterio.R;
 import com.beslenge.iterio.Student;
+import com.beslenge.iterio.data.FragmentTag;
 import com.beslenge.iterio.data.Pref;
 import com.beslenge.iterio.fragments.AttendanceFragment;
 import com.beslenge.iterio.fragments.FaqFragment;
@@ -71,9 +72,9 @@ public class DashboardActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         
         if (!Objects.equals(sharedPreferences.getString(Pref.attendanceData, "NODATA"), "NODATA")) {
-            fragmentTransaction.add(frameLayout.getId(), attendanceFragment, "attendanceTag");
+            fragmentTransaction.add(frameLayout.getId(), attendanceFragment, FragmentTag.ATTENDANCE.toString());
         } else {
-            fragmentTransaction.add(frameLayout.getId(), new NoDataAvailableFragment(), "nodataTag");
+            fragmentTransaction.add(frameLayout.getId(), new NoDataAvailableFragment(), FragmentTag.UNAVAILABLE.toString());
         }
         fragmentTransaction.commit();
         
@@ -108,7 +109,7 @@ public class DashboardActivity extends AppCompatActivity {
             return true;
         } else if (itemId == R.id.menu_item_set_minimum_attendance) {
             new PercentageSettingFragment(DashboardActivity.this, attendanceViewModel, editor, sharedPreferences)
-                    .show(fragmentManager, "ATTENDANCE_SETTING_FRAGMENT");
+                    .show(fragmentManager, FragmentTag.PERCENTAGESETTING.toString());
             return true;
         } else if (itemId == R.id.menu_item_credit) {
             new MaterialAlertDialogBuilder(DashboardActivity.this)
@@ -119,7 +120,10 @@ public class DashboardActivity extends AppCompatActivity {
             new MaterialAlertDialogBuilder(DashboardActivity.this)
                     .setTitle("Logout !")
                     .setMessage("Do you really want to logout?")
-                    .setNeutralButton("cancel", (dialog, which) -> Snackbar.make(frameLayout, "Logout Cancelled", BaseTransientBottomBar.LENGTH_SHORT).show())
+                    .setNeutralButton("cancel",
+                            (dialog, which) -> Snackbar.make(frameLayout,
+                                    "Logout Cancelled",
+                                    BaseTransientBottomBar.LENGTH_SHORT).show())
                     .setPositiveButton("Yes", (dialog, which) -> {
                         editor.remove(Pref.status);
                         editor.remove(Pref.minimumAttendance);
@@ -133,7 +137,7 @@ public class DashboardActivity extends AppCompatActivity {
                     }).show();
             return true;
         } else if (itemId == R.id.menu_item_faq) {
-            faqFragment.show(fragmentManager, "FAQFRAGMENT");
+            faqFragment.show(fragmentManager, FragmentTag.FAQ.toString());
             return true;
         }
         return false;
@@ -258,13 +262,13 @@ public class DashboardActivity extends AppCompatActivity {
             Fragment fragment = fragmentManager.findFragmentById(frameLayout.getId());
             assert fragment != null;
             if (!s.equals("NODATA")) {
-                if (fragment != attendanceFragment) {
+                if (!(Objects.equals(fragment.getTag(), FragmentTag.ATTENDANCE.toString()))) {
                     fragmentManager.beginTransaction()
                             .replace(frameLayout.getId(), attendanceFragment)
                             .commit();
                 }
             } else {
-                if (!(Objects.equals(fragment.getTag(), "nodataTag"))) {
+                if (!(Objects.equals(fragment.getTag(), FragmentTag.UNAVAILABLE.toString()))) {
                     editor.remove(Pref.attendanceData);
                     editor.commit();
                     fragmentManager.beginTransaction()
