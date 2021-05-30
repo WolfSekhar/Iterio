@@ -30,23 +30,26 @@ public class NoDataAvailableFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_no_data_available, container, false);
-        
+    
         LottieAnimationView animationView = root.findViewById(R.id.lottieAnimationView_no_data);
+    
         LinearLayout linearLayout = root.findViewById(R.id.linear_layout_nodata_fragment);
-        
+    
         animationView.setRepeatCount(0);
         new Handler(Looper.getMainLooper()).postDelayed(animationView::playAnimation, 900);
-        
-        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(animationView, View.ALPHA, 0f, 1f);
-        objectAnimator1.setStartDelay(500);
-        objectAnimator1.setDuration(500);
-        objectAnimator1.start();
-        
-        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(linearLayout, View.ALPHA, 0f, 1f);
-        objectAnimator.setStartDelay(1000);
-        objectAnimator.setDuration(500);
-        objectAnimator.start();
-        
+    
+        setObjectAnimator(animationView, 500, 500);
+        setObjectAnimator(linearLayout, 1000, 500);
+    
         return root;
     }
+    
+    private void setObjectAnimator(View view, int startDelay, int animationDuration) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.ALPHA, 0f, 1f);
+        animator.setStartDelay(startDelay);
+        animator.setDuration(animationDuration);
+        animator.start();
+    }
+    
+    
 }

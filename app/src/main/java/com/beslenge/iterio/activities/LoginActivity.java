@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.airbnb.lottie.LottieAnimationView;
 import com.beslenge.iterio.R;
 import com.beslenge.iterio.Student;
+import com.beslenge.iterio.data.FragmentTag;
 import com.beslenge.iterio.data.Pref;
 import com.beslenge.iterio.fragments.FaqFragment;
 import com.beslenge.iterio.utils.CheckInternet;
@@ -139,6 +140,6 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     public void onClickInfo(View view) {
-        faqFragment.show(getSupportFragmentManager(), "FAQFRAGMENT");
+        faqFragment.show(getSupportFragmentManager(), FragmentTag.FAQ.toString());
     }
 }

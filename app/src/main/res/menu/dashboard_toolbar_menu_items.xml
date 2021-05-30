@@ -1,59 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-
     <item
         android:id="@+id/menu_item_update"
         android:icon="@drawable/ic_round_refresh_24"
         android:title="@string/refresh"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/menu_item_name"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="@string/name"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_item_set_minimum_attendance"
-        android:enabled="true"
-        android:title="@string/set_attendance"
-        app:showAsAction="never">
-    </item>
-    <item
-        android:id="@+id/menu_item_set_theme"
-        android:enabled="true"
-        android:title="@string/set_theme"
-        app:showAsAction="never">
-        <menu>
-            <group
-                android:checkableBehavior="single"
-                android:enabled="true"
-                android:menuCategory="alternative"
-                android:visible="true">
-                <item
-                    android:id="@+id/menu_item_light"
-                    android:onClick="onSetTheme"
-                    android:title="@string/light" />
-                <item
-                    android:id="@+id/menu_item_dark"
-                    android:onClick="onSetTheme"
-                    android:title="@string/dark" />
-            </group>
-        </menu>
-    </item>
-    <item
-        android:id="@+id/menu_item_faq"
-        android:title="@string/FAQ"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_item_credit"
-        android:title="@string/about"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/menu_item_logout"
-        android:title="@string/logout"
-        app:showAsAction="never">
 
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_round_menu_open_24"
+        android:title=""
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/menu_item_name"
+                android:icon="@drawable/ic_round_person_24"
+                android:title="@string/name"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_item_set_minimum_attendance"
+                android:enabled="true"
+                android:icon="@drawable/ic_round_app_settings_alt_24"
+                android:title="@string/set_attendance"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_item_set_theme"
+                android:enabled="true"
+                android:icon="@drawable/ic_round_brightness_4_24"
+                android:title="@string/set_theme"
+                app:showAsAction="never">
+                <menu>
+                    <group
+                        android:checkableBehavior="single"
+                        android:enabled="true"
+                        android:menuCategory="alternative"
+                        android:visible="true">
+                        <item
+                            android:id="@+id/menu_item_light"
+                            android:onClick="onSetTheme"
+                            android:title="@string/light" />
+                        <item
+                            android:id="@+id/menu_item_dark"
+                            android:onClick="onSetTheme"
+                            android:title="@string/dark" />
+                    </group>
+                </menu>
+            </item>
+            <item
+                android:id="@+id/menu_item_faq"
+                android:icon="@drawable/ic_round_question_answer_24"
+                android:title="@string/FAQ"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_item_credit"
+                android:icon="@drawable/ic_round_developer_mode_24"
+                android:title="@string/about"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/menu_item_logout"
+                android:icon="@drawable/ic_round_exit_to_app_24"
+                android:title="@string/logout"
+                app:showAsAction="never">
+
+            </item>
+        </menu>
     </item>
 
 

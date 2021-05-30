@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/user_id"
-            app:startIconDrawable="@drawable/ic_baseline_person_24">
+            app:startIconDrawable="@drawable/ic_round_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_userId_login_layout"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/password"
             app:endIconMode="password_toggle"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24">
+            app:startIconDrawable="@drawable/ic_round_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText_password_login_layout"
@@ -92,7 +92,7 @@
         android:text="@string/login"
         android:textSize="16sp"
         app:elevation="10dp"
-        app:icon="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:icon="@drawable/ic_round_login_24"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

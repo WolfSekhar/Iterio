@@ -145,7 +145,7 @@ public class DashboardActivity extends AppCompatActivity {
     
     @Override
     public boolean onPrepareOptionsMenu(@NonNull Menu menu) {
-        SubMenu subMenuTheme = menu.getItem(3).getSubMenu();
+        SubMenu subMenuTheme = menu.findItem(R.id.menu_item_set_theme).getSubMenu();
         switch (sharedPreferences.getInt(Pref.theme, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)) {
             case AppCompatDelegate.MODE_NIGHT_NO:
                 subMenuItemThemeSelect(subMenuTheme, 0);
