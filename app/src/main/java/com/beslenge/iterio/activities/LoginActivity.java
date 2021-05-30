@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "BOB";
     private Button aLoginButton;
     private FaqFragment faqFragment;
-    private MyViewmodel aMyViewmodel;
+    private MyViewmodel aMyViewModel;
     private ProgressBar progressBar;
     private LinearLayout linearLayout;
     private LottieAnimationView lottie;
@@ -49,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         instantiateViewModel();
         setUpAnimation();
         faqFragment = new FaqFragment(this);
-        
+    
+    
         aLoginButton.setOnClickListener(v -> {
             new CheckInternet(LoginActivity.this, isAvailable -> {
                 if (isAvailable) {
@@ -73,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         setDefaultMinimumAttendancePercentage();
         int activityTag = 0;
-        aMyViewmodel.setUserAndPasswordAndFetchData(student, activityTag);
+        aMyViewModel.setUserAndPasswordAndFetchData(student, activityTag);
     }
     
     private void setDefaultMinimumAttendancePercentage() {
@@ -97,20 +98,20 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     private void instantiateViewModel() {
-        aMyViewmodel = new ViewModelProvider(LoginActivity.this).get(MyViewmodel.class);
+        aMyViewModel = new ViewModelProvider(LoginActivity.this).get(MyViewmodel.class);
     }
     
     private void observerMessageAndData() {
-        aMyViewmodel.getServerResponseMessage().observe(LoginActivity.this, s -> {
+        aMyViewModel.getServerResponseMessage().observe(LoginActivity.this, s -> {
             assert s != null;
             progressBar.setVisibility(View.GONE);
             Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
             aLoginButton.setAlpha(1f);
             aLoginButton.setClickable(true);
         });
+    
+        aMyViewModel.getServerResponseData().observe(LoginActivity.this, s -> {
         
-        aMyViewmodel.getServerResponseData().observe(LoginActivity.this, s -> {
-            
             if (Objects.equals(sharedPreferences.getString(Pref.status, "null"), "success")) {
                 Intent intent = new Intent().setClass(LoginActivity.this, DashboardActivity.class).putExtra("code", 200);
                 startActivity(intent);
@@ -120,26 +121,21 @@ public class LoginActivity extends AppCompatActivity {
     }
     
     private void setUpAnimation() {
-        
         new Handler(Looper.getMainLooper()).postDelayed(() -> runOnUiThread(() -> {
             lottie.playAnimation();
         }), 800);
         
-        ObjectAnimator animator2 = ObjectAnimator.ofFloat(lottie, View.ALPHA, 0f, 1f);
-        animator2.setStartDelay(300);
-        animator2.setDuration(500);
-        animator2.start();
+        setObjectAnimator(lottie, 300, 500);
+        setObjectAnimator(linearLayout, 600, 500);
+        setObjectAnimator(aLoginButton, 900, 550);
         
-        ObjectAnimator animator1 = ObjectAnimator.ofFloat(linearLayout, View.ALPHA, 0f, 1f);
-        animator1.setStartDelay(600);
-        animator1.setDuration(500);
-        animator1.start();
-        //Login button animation
-        ObjectAnimator animator = ObjectAnimator.ofFloat(aLoginButton, View.ALPHA, 0f, 1f);
-        animator.setStartDelay(900);
-        animator.setDuration(500);
+    }
+    
+    private void setObjectAnimator(View view, int startDelay, int animationDuration) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, View.ALPHA, 0f, 1f);
+        animator.setStartDelay(startDelay);
+        animator.setDuration(animationDuration);
         animator.start();
-        
     }
     
     public void onClickInfo(View view) {
