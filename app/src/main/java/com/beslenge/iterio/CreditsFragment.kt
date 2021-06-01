@@ -1,6 +1,7 @@
 package com.beslenge.iterio
 
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 
 
 class CreditsFragment(context: Context) : DialogFragment() {
@@ -45,7 +47,7 @@ class CreditsFragment(context: Context) : DialogFragment() {
 
         shareButton.setOnClickListener {
             dismiss()
-
+            shareApp()
         }
 
     }
@@ -57,6 +59,21 @@ class CreditsFragment(context: Context) : DialogFragment() {
         playStoreIntent.data = uri
         startActivity(playStoreIntent)
 
+    }
+
+    private fun shareApp() {
+        val url = "https://play.google.com/store/apps/details?id=com.beslenge.iterio"
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, url)
+            type = "text/plain"
+        }
+        try {
+            startActivity(sendIntent)
+        } catch (e: ActivityNotFoundException) {
+            Snackbar.make(requireView(), getString(R.string.can_not_share), Snackbar.LENGTH_LONG)
+                .show()
+        }
     }
 
 
