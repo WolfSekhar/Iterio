@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.beslenge.iterio.CreditsFragment;
 import com.beslenge.iterio.R;
 import com.beslenge.iterio.Student;
 import com.beslenge.iterio.data.FragmentTag;
@@ -53,7 +54,6 @@ public class DashboardActivity extends AppCompatActivity {
     private int stopStatus = 0;
     private AttendanceFragmentViewModel attendanceViewModel;
     
-    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +80,6 @@ public class DashboardActivity extends AppCompatActivity {
         
         
         observeDataAndMessage();
-    
     }
     
     @Override
@@ -112,9 +111,7 @@ public class DashboardActivity extends AppCompatActivity {
                     .show(fragmentManager, FragmentTag.PERCENTAGESETTING.toString());
             return true;
         } else if (itemId == R.id.menu_item_credit) {
-            new MaterialAlertDialogBuilder(DashboardActivity.this)
-                    .setView(R.layout.credits_view)
-                    .show();
+            new CreditsFragment(DashboardActivity.this).show(fragmentManager, FragmentTag.CREDIT.toString());
             return true;
         } else if (itemId == R.id.menu_item_logout) {
             new MaterialAlertDialogBuilder(DashboardActivity.this)

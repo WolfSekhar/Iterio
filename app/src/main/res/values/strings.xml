@@ -75,4 +75,6 @@
         <item>No.</item>
     </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="playstore_rating">Rate</string>
+    <string name="share">Share</string>
 </resources>

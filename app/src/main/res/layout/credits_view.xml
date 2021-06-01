@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CreditsFragment"
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical">
@@ -26,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
         android:gravity="center_horizontal"
         android:text="@string/credit_text"
         android:textAllCaps="true" />
@@ -48,4 +50,29 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="@string/developed_by_sekhar" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_playstore_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="@string/playstore_rating"
+            app:icon="@drawable/ic_round_stars_24"
+            app:iconGravity="end" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_share_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/share"
+            app:icon="@drawable/ic_round_share_24"
+            app:iconGravity="end" />
+    </LinearLayout>
 </LinearLayout>
