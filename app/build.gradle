@@ -9,8 +9,8 @@ android {
         applicationId "com.beslenge.iterio"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 9
-        versionName '1.7-beta-01'
+        versionCode 10
+        versionName '1.7'
 
         //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
