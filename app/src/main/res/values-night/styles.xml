@@ -9,10 +9,15 @@
         <item name="colorOnPrimary">#FFFFF0</item>
         <item name="fontFamily">@font/roboto</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+        <item name="android:popupAnimationStyle">@style/Animation</item>
     </style>
 
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation">@android:anim/accelerate_interpolator</item>
         <item name="android:windowExitAnimation">@android:anim/decelerate_interpolator</item>
+    </style>
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_in</item>
     </style>
 </resources>

@@ -3,44 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CreditsFragment"
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical">
+
     <TextView
-        android:text="@string/about"
-        android:gravity="center"
-        android:layout_marginTop="30dp"
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/ic_round_developer_mode_24"
-        android:layout_width="80dp"
-        android:layout_height="80dp"/>
-    <TextView
-        android:textAlignment="center"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:textAllCaps="true"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:text="@string/credit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:text="@string/version"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:gravity="center"
+        android:layout_height="match_parent"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/developed_by_sekhar"
+        android:gravity="center"
+        android:text="@string/about" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_round_developer_mode_24" />
+
+    <TextView
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center_horizontal"
+        android:text="@string/credit_text"
+        android:textAllCaps="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/version" />
+
+    <TextView
         style="@style/TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:text="@string/developed_by_sekhar" />
+
+    <LinearLayout
+        android:layout_marginBottom="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_playstore_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="@string/playstore_rating"
+            app:icon="@drawable/ic_round_stars_24"
+            app:iconGravity="end" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_share_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@string/share"
+            app:icon="@drawable/ic_round_share_24"
+            app:iconGravity="end" />
+    </LinearLayout>
 </LinearLayout>
