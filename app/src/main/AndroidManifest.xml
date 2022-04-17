@@ -22,19 +22,22 @@
             android:configChanges="uiMode"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
+            android:exported="false"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".activities.LoginActivity"
             android:configChanges="uiMode"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
+            android:exported="false"
             tools:ignore="LockedOrientationActivity">
 
         </activity>
         <activity
-            android:name=".activities.LauncherActivity"
-            android:configChanges="uiMode"
-            android:theme="@android:style/Theme.NoDisplay">
+                android:name=".activities.LauncherActivity"
+                android:configChanges="uiMode"
+                android:theme="@android:style/Theme.NoDisplay"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

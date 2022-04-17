@@ -11,4 +11,5 @@
         <item name="android:statusBarColor">@color/colorStatusNavBar</item>
 
     </style>
+
 </resources>

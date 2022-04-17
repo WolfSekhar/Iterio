@@ -8,7 +8,7 @@
         <item>85</item>
         <item>95</item>
     </string-array>
-    <string name="version">Version: 1.7-beta-01</string>
+    <string name="version">Version: 1.7-beta-02</string>
     <string name="app_name">ITERio</string>
     <string name="toolbar_title">ITERio</string>
     <string name="user_id">Regd ID</string>
@@ -49,7 +49,7 @@
     <string name="classes_need_to_bunk3">Classes need to bunk3</string>
     <string name="time_updated">time_updated</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="no_data_available">Attendance not available in server</string>
+    <string name="no_data_available">Attendance Unavailable</string>
     <string name="check_again_later">Check again later</string>
     <string name="minAttendanceTitle">Set Percentage</string>
     <string name="noInternet">No internet Connection</string>
@@ -70,7 +70,7 @@
         <item>Due to the dynamic nature of ITER server IP address, it’s scraped from SOA website directly. But it only happens once.</item>
         <item>Because your latest semester attendance might not be uploaded to the server yet.</item>
         <item>No.</item>
-        <item>No. But it will be.</item>
+        <item>Yes.</item>
         <item>Yes.</item>
         <item>No.</item>
     </string-array>

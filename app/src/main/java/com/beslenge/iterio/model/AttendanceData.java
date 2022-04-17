@@ -68,7 +68,7 @@ public class AttendanceData {
                     totalClasses.add(Integer.valueOf(localAtten[1].trim()));
                     typeOfClass.add("Lab");
                     
-                } else {
+                } else if(!jsonData.getJSONArray("griddata").getJSONObject(i).getString("Latt").equals("Not Applicable")) {
                     String[] localAtten = jsonData.getJSONArray("griddata").getJSONObject(i).getString("Latt").split("/");
                     attendedClasses.add(Integer.valueOf(localAtten[0].trim()));
                     totalClasses.add(Integer.valueOf(localAtten[1].trim()));
