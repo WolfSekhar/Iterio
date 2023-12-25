@@ -1,4 +1,8 @@
+# THIS APP IS NOT FUNCTIONING RIGHT NOW ... .I AM WORKING ON IT......
+
 #  ITERio
+
+
 ## 🛩️ ITERio is here .............  
   
 - 🚀️ Support from android Kitkat to Pie and Android 10.  
